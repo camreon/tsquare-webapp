@@ -19,6 +19,7 @@ GOOGLE_BASE_AUTH_URL = 'https://accounts.google.com/o/oauth2/auth'
 GOOGLE_EXCHANGE_REDIRECT_URI = 'http://tsquare-webapp-temp.herokuapp.com/google_login_exchange'
 GOOGLE_OAUTH_TOKEN_URL = "https://accounts.google.com/o/oauth2/token"
 
+# note:
 # dummy user data for presentation purposes
 user = {'firstName': 'Cameron'}
 curr_sites = [{'title': 'CS 4911'}, {'title': 'MATH 2050'}, 
