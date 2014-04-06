@@ -7,9 +7,9 @@ from django.conf.urls import patterns, include, url
 urlpatterns = patterns('',
    
     # Examples:
-    url(r'^$','tsquare-web.views.tlogin'),
+    url(r'^$','tsquare-web.views.home'),
     url(r'^tlogin/$', 'tsquare-web.views.tlogin'),
-    url(r'^tlogout/$','tsquare-web.views.tlogout'),
+    url(r'^tlogout/$','tsquare-web.views.tlogin'),
     url(r'^home/$','tsquare-web.views.home'),
     url(r'^services/$','tsquare-web.views.external_services'),
     url(r'^sites/$','tsquare-web.views.sites'),

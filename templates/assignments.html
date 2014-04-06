@@ -26,31 +26,62 @@
   </div>
 
   <div class="table-responsive">
-    {% for assignment in assignments %}
       <table class="table table-bordered table-condensed">
         <tr>
           <!--avoid linking to the official tsquare assignment page?-->
           <th class="col-xs-2">Assignments</th>
-          <td class="col-xs-2"><a href="{{ assignment.href }}">{{ assignment.title }}</a></td>
+          <td class="col-xs-2"><a href="#">Homework 1</a></td>
         </tr>
         <tr>
           <th class="col-xs-2">Status</th>
-          <td class="col-xs-2">{{ assignment.status }}</td>
+          <td class="col-xs-2">Open</td>
         </tr>
         <tr>
           <th class="col-xs-2">Open</th>
-          <td class="col-xs-2">{{ assignment.openDate }}</td>
+          <td class="col-xs-2">Jan 1</td>
         </tr>
         <tr>
           <th class="col-xs-2">Due</th>
-          <td class="col-xs-2">{{ assignment.dueDate }}</td>
+          <td class="col-xs-2">Apr 1</td>
+        </tr>
+        <tr>
+          <!--avoid linking to the official tsquare assignment page?-->
+          <th class="col-xs-2">Assignments</th>
+          <td class="col-xs-2"><a href="#">Homework 2</a></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2">Status</th>
+          <td class="col-xs-2">Open</td>
+        </tr>
+        <tr>
+          <th class="col-xs-2">Open</th>
+          <td class="col-xs-2">Jan 1</td>
+        </tr>
+        <tr>
+          <th class="col-xs-2">Due</th>
+          <td class="col-xs-2">Apr 1</td>
+        </tr>
+        <tr>
+          <!--avoid linking to the official tsquare assignment page?-->
+          <th class="col-xs-2">Assignments</th>
+          <td class="col-xs-2"><a href="#">Homework 3</a></td>
+        </tr>
+        <tr>
+          <th class="col-xs-2">Status</th>
+          <td class="col-xs-2">Open</td>
+        </tr>
+        <tr>
+          <th class="col-xs-2">Open</th>
+          <td class="col-xs-2">Jan 1</td>
+        </tr>
+        <tr>
+          <th class="col-xs-2">Due</th>
+          <td class="col-xs-2">Apr 1</td>
         </tr>
         <!--something to denote that an attachment exists?-->
-      </table>
-      <hr>
-    {% endfor %}
+      </table>    
   </div>
-
+  <hr>
 </div> <!-- /container -->
 
 {% endblock %}

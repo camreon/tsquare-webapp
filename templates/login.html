@@ -14,7 +14,7 @@
       {% endif %}
   <form class="form-signin" action="" method="POST">
   	{% csrf_token %}
-    <h3>TSquare2 - Login</h3>
+    <h3>T-Square 2</h3>
 
     <input type="text" name="username" class="form-control" placeholder="Username" />
     <input type="password" name="password" class="form-control" placeholder="Password" />
@@ -22,9 +22,12 @@
       <input type="checkbox" value="remember-me"> Remember me
     </label>-->
     <!--Allow mobile browsers to save login info?-->
-    <button class="btn btn-warning btn-lg btn-block" type="submit" value="Login">Login</button>
+    <button class="btn btn-warning btn-lg btn-block" type="submit" value="Login"> Login</button>
   </form>
 
+  <div class="row text-center">
+    <small>Note: You can login without a username and password.</smalll>
+  </div>
 </div>
 </div>
 
