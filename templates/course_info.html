@@ -8,7 +8,7 @@
   <form action="#" method="get">
     {% for site in curr_sites %}
       <li>
-        <input type="submit" value={{ site.title }} name={{ site.id }}></input>
+        <input type="submit" name={{ site.title }} value="{{ site.title }}"></input>
       </li>
     {% endfor %}
   </form>

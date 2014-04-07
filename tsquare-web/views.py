@@ -27,18 +27,6 @@ curr_sites = [{'title': 'CS 4911'}, {'title': 'MATH 2050'},
 grades = []
 assignments = []
 curr = {'title': 'CS 4911'}
-'''
-assignments = [{'assign 1':   [{'href': '#'},
-                                { 'title': 'HW 1'},
-                                { 'status': 'Open'},
-                                { 'openDate': 'Jan 1'},
-                                { 'dueDate': 'April 1'}] },
-               {'assign 2':  [{'href': '#'},
-                                { 'title': 'HW 1'},
-                                { 'status': 'Open'},
-                                { 'openDate': 'Jan 1'},
-                                { 'dueDate': 'April 1'}] }]
-'''
 
 def tlogin(request):
     """
@@ -106,19 +94,22 @@ def home(request):
         profile.current_course = curr_sites[0]
         profile.save()
         '''
-        return render_to_response('home.html', {'userinfo':user, 'curr_sites':curr_sites})
+        update_curr(request)
+        return render_to_response('home.html', {'userinfo':user, 'curr_sites':curr_sites,'curr':curr})
 
 #@login_required
 def profile(request):
         #tsapi = request.session['tsapi']
         #curr_sites = tsapi.get_sites(filter_func=get_curr_sites)
-    	return render(request,'profile.html',{'curr_sites':curr_sites})
+        update_curr(request)
+    	return render(request,'profile.html',{'curr_sites':curr_sites,'curr':curr})
 
 #@login_required
 def resources(request):
         #tsapi = request.session['tsapi']
         #curr_sites = tsapi.get_sites(filter_func=get_curr_sites)
-    	return render(request,'resources.html',{'curr_sites':curr_sites})
+        update_curr(request)
+    	return render(request,'resources.html',{'curr_sites':curr_sites,'curr':curr})
 
 #@login_required
 def gradebook(request):
@@ -129,8 +120,9 @@ def gradebook(request):
         site = curr_sites[0]
         grades = tsapi.get_grades(site)
         '''
+        update_curr(request)
     	return render(request,'gradebook.html',{'grades'    :grades,
-                                                'curr_sites':curr_sites})
+                                                'curr_sites':curr_sites,'curr':curr})
 
 #@login_required
 def github_login(request):
@@ -225,6 +217,7 @@ def external_services(request):
     """
     Shows all the external services a user can integrate his or her account with
     """
+    update_curr(request)
     params = {}
     if 'done' in request.GET:
         if request.GET['done'] == 'already':
@@ -240,8 +233,9 @@ def sites(request):
         sites = tsapi.get_sites()
         curr_sites = tsapi.get_sites(filter_func=get_curr_sites)
         '''
+        update_curr(request)
         return render(request,'sites.html',{'curr_sites':curr_sites,
-                                            'sites'     :sites})
+                                            'sites'     :sites,'curr':curr})
 
 #@login_required
 def assignments(request):
@@ -254,8 +248,9 @@ def assignments(request):
         site = curr_sites[0]
         assignments = tsapi.get_assignments(site)
         '''
+        update_curr(request)
         return render(request,'assignments.html',{'assignments':assignments,
-                                                  'curr_sites' :curr_sites})
+                                                  'curr_sites' :curr_sites,'curr':curr})
 
 #@login_required
 def course_info(request):
@@ -269,38 +264,37 @@ def course_info(request):
         curr_sites = tsapi.get_sites(filter_func=get_curr_sites)
         # save current course on click
         profile = UserProfile.objects.get(user_id=request.user.id)
-        
-        for site in curr_sites:
-            if (request.GET.get(site.id)):
-                profile.current_course = site.title
-                profile.save()
-        curr = profile.current_course
         '''
+        update_curr(request)
         return render_to_response('course_info.html',{'curr_sites':curr_sites,'curr':curr})
 
 #@login_required
 def announcements(request):
         #tsapi = request.session['tsapi']
         #curr_sites = tsapi.get_sites(filter_func=get_curr_sites)
-        return render(request,'announcements.html',{'curr_sites':curr_sites})
+        update_curr(request)
+        return render(request,'announcements.html',{'curr_sites':curr_sites,'curr':curr})
 
 #@login_required
 def wiki(request):
         #tsapi = request.session['tsapi']
         #curr_sites = tsapi.get_sites(filter_func=get_curr_sites)
-        return render(request,'wiki.html',{'curr_sites':curr_sites})
+        update_curr(request)
+        return render(request,'wiki.html',{'curr_sites':curr_sites,'curr':curr})
 
 #@login_required
 def help(request):
         #tsapi = request.session['tsapi']
         #curr_sites = tsapi.get_sites(filter_func=get_curr_sites)
-        return render(request,'help.html',{'curr_sites':curr_sites})
+        update_curr(request)
+        return render(request,'help.html',{'curr_sites':curr_sites,'curr':curr})
 
 #@login_required
 def assignment_detail(request):
         #tsapi = request.session['tsapi']
         #curr_sites = tsapi.get_sites(filter_func=get_curr_sites)
-        return render(request,'assignment_detail.html',{'curr_sites':curr_sites})
+        update_curr(request)
+        return render(request,'assignment_detail.html',{'curr_sites':curr_sites,'curr':curr})
 
 def get_curr_sites(site):
         '''
@@ -321,3 +315,11 @@ def help(request):
     Shows a documentation for T-square to the user
     """
     return render(request,'help.html')
+
+def update_curr(request):
+    if request.GET.get('CS'):
+        curr['title'] = request.GET.get('CS')
+    if request.GET.get('MATH'):
+        curr['title'] = request.GET.get('MATH')
+        print request.GET.get('MATH')
+
